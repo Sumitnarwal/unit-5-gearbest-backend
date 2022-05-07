@@ -2,6 +2,7 @@ const express=require("express");
 const cors=require("cors");
 const  connect  = require("./configs/db");
 const app=express();
+const port =process.env.Port || 7005
 app.use(express.json())
 app.use(cors());
 const allController=require("./controller/allpro.controllers")
@@ -13,6 +14,7 @@ const scienceController=require("./controller/science.controll")
 const userController=require("./controller/collectionController")
 const addtoCartController=require("./controller/adToCartController")
 const superDealController=require("./controller/superDealContro")
+const placeorderController=require("./controller/placeorder.controller")
 
 
 
@@ -25,12 +27,13 @@ app.use("/laptop",laptopController)
 app.use("/outdoor",outdoorController)
 app.use("/science",scienceController)
 app.use("/mobile",mobileController)
+app.use("/placeorder",placeorderController)
 
 
 
 
 
-app.listen(7005,async ()=>{
+app.listen(port,async ()=>{
     try{
         await connect();
         console.log("listing on port 7005")
