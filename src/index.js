@@ -15,6 +15,8 @@ const userController=require("./controller/collectionController")
 const addtoCartController=require("./controller/adToCartController")
 const superDealController=require("./controller/superDealContro")
 const placeorderController=require("./controller/placeorder.controller")
+const {login,register}=require("./controller/auth.controller")
+
 
 
 
@@ -29,7 +31,8 @@ app.use("/science",scienceController)
 app.use("/mobile",mobileController)
 app.use("/placeorder",placeorderController)
 
-
+app.post("/register",register)
+app.post("/login",login)
 
 
 
