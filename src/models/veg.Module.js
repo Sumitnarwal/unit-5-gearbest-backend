@@ -15,8 +15,8 @@ const userSchema = new mongoose.Schema(
   },
   {
     versionKey: false,
-  
+
   }
 );
 
-module.exports = mongoose.model("addtocart", userSchema); // user => users
+module.exports = mongoose.model("fruits", userSchema); 

@@ -1,7 +1,6 @@
 const express = require("express");
-const User = require("../models/superDeals");
+const User = require("../models/veg.Module");
 const router = express.Router();
-const path=require("path");
 
 
 router.get("", async (req, res) => {
@@ -12,15 +11,5 @@ router.get("", async (req, res) => {
         return res.status(500).send({ message: err.message })
     }
 });
-router.post("", async (req, res) => {
-    
-    try {
-        const users = await User.create(req.body);
-        return res.send(users);
-    } catch (err) {
-        return res.status(500).send({ message: err.message })
-    }
-});
- 
 
 module.exports = router;
