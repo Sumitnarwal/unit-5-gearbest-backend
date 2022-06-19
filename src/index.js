@@ -6,36 +6,15 @@ const app = express();
 
 app.use(express.json())
 app.use(cors());
-const allController = require("./controller/allpro.controllers")
-const kitchenController = require("./controller/kitchen.contro")
-const laptopController = require("./controller/laptop.contro")
-const mobileController = require("./controller/mobile.con")
-const outdoorController = require("./controller/outdoor.contr")
-const scienceController = require("./controller/science.controll")
-const userController = require("./controller/collectionController")
+
+const userController = require("./controller/user.controller")
 const addtoCartController = require("./controller/adToCartController")
-const superDealController = require("./controller/superDealContro")
-const placeorderController = require("./controller/placeorder.controller")
-const { login, register } = require("./controller/auth.controller")
+const vegitableController = require("./controller/veg.Contr")
 
 
-
-
-app.use("/superDeal", superDealController)
+app.use("/softdrink", userController)
+app.use("/veg", vegitableController)
 app.use("/addtocart", addtoCartController)
-app.use("/collection", userController)
-app.use("/all", allController)
-app.use("/kitchen", kitchenController)
-app.use("/laptop", laptopController)
-app.use("/outdoor", outdoorController)
-app.use("/science", scienceController)
-app.use("/mobile", mobileController)
-app.use("/placeorder", placeorderController)
-
-app.post("/register", register)
-app.post("/login", login)
-
-
 
 app.listen(process.env.PORT, async () => {
     try {
