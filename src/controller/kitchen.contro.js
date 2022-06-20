@@ -1,6 +1,6 @@
 
 const express = require("express");
-const User = require("../models/addtoCart");
+const User = require("../models/kitchem.model");
 const router = express.Router();
 
 
@@ -17,7 +17,6 @@ router.get("", async (req, res) => {
         return res.status(500).send({ message: err.message })
     }
 });
-
 router.post("", async (req, res) => {
     
     try {
@@ -35,6 +34,18 @@ router.delete("/:id", async (req, res) => {
     } catch (err) {
       return res.status(500).send(err.message);
     }
-  }); 
-
+  });
+  router.get("/:id", async (req, res) => {
+    try {
+      const user = await User.findById(req.params.id).lean().exec();
+  
+      if (user) {
+        return res.send(user);
+      } else {
+        return res.status(404).send({ message: "User not found" });
+      }
+    } catch (err) {
+      return res.status(500).send(err.message);
+    }
+  });
 module.exports = router;

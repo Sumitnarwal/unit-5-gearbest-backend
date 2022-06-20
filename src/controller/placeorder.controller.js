@@ -1,13 +1,18 @@
+
 const express = require("express");
-const User = require("../models/user.module");
+const User = require("../models/placeorder");
 const router = express.Router();
-const path=require("path");
+
 
 
 router.get("", async (req, res) => {
     try {
-        const users = await User.find().lean().exec();
-        return res.send(users);
+    //   const page=req.query.page
+    //   const pagesize=req.query.size || 55
+    //   const skip=(page-1)*pagesize
+
+      const user = await User.find().lean().exec();
+        return res.send(user);
     } catch (err) {
         return res.status(500).send({ message: err.message })
     }
@@ -22,7 +27,6 @@ router.post("", async (req, res) => {
         return res.status(500).send({ message: err.message })
     }
 });
- 
 router.get("/:id", async (req, res) => {
     try {
       const user = await User.findById(req.params.id).lean().exec();
@@ -36,24 +40,7 @@ router.get("/:id", async (req, res) => {
       return res.status(500).send(err.message);
     }
   });
-  
-  // met + route => patch /users/${variable} and the name of variable is id
-  router.patch("/:id", async (req, res) => {
-    try {
-      const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-      })
-        .lean()
-        .exec();
-  
-      res.status(201).send(user);
-    } catch (err) {
-      return res.status(500).send(err.message);
-    }
-  });
-  
-  // met + route => delete /users/${variable} and the name of variable is id
-  router.delete("/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
     try {
       const user = await User.findByIdAndDelete(req.params.id).lean().exec();
   
@@ -61,6 +48,6 @@ router.get("/:id", async (req, res) => {
     } catch (err) {
       return res.status(500).send(err.message);
     }
-  });
-  
+  }); 
+
 module.exports = router;
